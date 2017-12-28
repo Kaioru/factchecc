@@ -11,7 +11,7 @@ class StatsController < ApplicationController
     render json: {
         "url" => @url,
         "confidence" => @stats.round(2),
-        "is_fake" => @stats > 7
+        "is_fake" => @stats > 0.7
       }
   end
 
