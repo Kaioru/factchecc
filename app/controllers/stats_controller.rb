@@ -1,6 +1,6 @@
 class StatsController < ApplicationController
   def show
-    @article = Article.find(params[:id])
+    @article = Article.find_by_url(params[:url])
     @fakes = @article.reports
                       .where(is_fake: true)
                       .count()
@@ -12,4 +12,5 @@ class StatsController < ApplicationController
         "is_fake" => @stats > 7
       }
   end
+
 end

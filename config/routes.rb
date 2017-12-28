@@ -6,6 +6,6 @@ Rails.application.routes.draw do
       resources :reports
     end
 
-    get '/stats/:id', to: 'stats#show'
+    get '/stats/:url', to: 'stats#show'
   end
 end
