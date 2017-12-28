@@ -1,9 +1,10 @@
 class ReportsController < ApplicationController
+  before_action :set_article
   before_action :set_report, only: [:show, :update, :destroy]
 
   # GET /reports
   def index
-    @reports = Report.all
+    @reports = @article.reports
 
     render json: @reports
   end
@@ -40,12 +41,16 @@ class ReportsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_article
+      @article = Article.find(params[:article_id])
+    end
+
     def set_report
-      @report = Report.find(params[:id])
+      @report = @article.reports.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def report_params
-      params.fetch(:report, {})
+      params.permit(:article_id, :is_fake)
     end
 end
